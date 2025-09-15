@@ -88,7 +88,7 @@ function Header() {
 
         {/* Mobile Navigation Menu */}
         <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+          isMobileMenuOpen ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <nav className="py-4 px-2">
             <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-gray-200/50 p-4">
@@ -132,7 +132,7 @@ function Header() {
               </ul>
               
               {/* Mobile Account Section */}
-              <div className="mt-4 pt-4 border-t border-gray-200/50">
+              <div className="mt-5 pt-4 border-t border-gray-200/50">
                 <div className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50/50 rounded-lg transition-colors duration-200 cursor-pointer">
                   <div 
                     className="w-10 h-10 rounded-full bg-cover bg-center border-2 border-white shadow-md ring-2 ring-gray-200/50"
