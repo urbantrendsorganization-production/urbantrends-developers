@@ -12,7 +12,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 relative">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
@@ -32,9 +32,9 @@ function Home() {
             {/* Main Heading */}
             <div className="mb-6">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] tracking-tight">
-                <span className="block text-gray-900">SHOWCASE YOUR</span>
-                <span className="block text-gray-900">BEST PROJECTS,</span>
-                <span className="block bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent animate-gradient">
+                <span className="block text-black">SHOWCASE YOUR</span>
+                <span className="block text-black">BEST PROJECTS,</span>
+                <span className="block bg-gradient-to-r from-gray-700 via-gray-700 to-gray-900 bg-clip-text text-transparent animate-gradient">
                   GET NOTICED FIRST
                 </span>
               </h1>
@@ -45,7 +45,7 @@ function Home() {
               <p className="text-lg sm:text-xl text-gray-600 leading-relaxed font-light">
                 Transform your projects into compelling stories that captivate clients, 
                 impress employers, and inspire collaborators. 
-                <span className="text-blue-600 font-medium"> Stand out in today's competitive landscape.</span>
+                <span className="text-gray-700 font-medium"> Stand out in today's competitive landscape.</span>
               </p>
             </div>
 
@@ -55,18 +55,18 @@ function Home() {
                 onClick={() => navigate("/add-project")}
                 className="group relative px-8 py-4 bg-gradient-to-r from-gray-900 to-gray-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 overflow-hidden"
               >
-                <span className="relative z-10 flex items-center justify-center gap-2">
+                <span className="relative z-10 flex items-center justify-center gap-2 hover:text-black">
                   Add Project
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                   </svg>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gray-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
 
               <button
                 onClick={() => navigate("/projects")}
-                className="group px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-blue-300 transform hover:scale-105 transition-all duration-300"
+                className="group px-8 py-4 bg-white text-gray-700 font-semibold rounded-xl shadow-lg hover:shadow-xl border-2 border-gray-200 hover:border-gray-300 transform hover:scale-105 transition-all duration-300"
               >
                 <span className="flex items-center justify-center gap-2">
                   View Projects

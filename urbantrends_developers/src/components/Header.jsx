@@ -27,28 +27,28 @@ function Header() {
             <div className="bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               <ul className="flex items-center gap-8 text-gray-700 font-medium">
                 <li className="relative group">
-                  <span className="cursor-pointer hover:text-blue-600 transition-colors duration-200 py-2">
+                  <span className="cursor-pointer hover:text-gray-900 transition-colors duration-200 py-2">
                     Contact
                   </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
                 </li>
                 <li className="relative group">
-                  <span className="cursor-pointer hover:text-blue-600 transition-colors duration-200 py-2">
+                  <span className="cursor-pointer hover:text-gray-900 transition-colors duration-200 py-2">
                     Community
                   </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
                 </li>
                 <li className="relative group">
-                  <span className="cursor-pointer hover:text-blue-600 transition-colors duration-200 py-2">
+                  <span className="cursor-pointer hover:text-gray-900 transition-colors duration-200 py-2">
                     Developers
                   </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
                 </li>
                 <li className="relative group">
-                  <span className="cursor-pointer hover:text-blue-600 transition-colors duration-200 py-2">
+                  <span className="cursor-pointer hover:text-gray-900 transition-colors duration-200 py-2">
                     Theme
                   </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-600 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
                 </li>
               </ul>
             </div>
