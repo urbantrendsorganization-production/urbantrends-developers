@@ -1,9 +1,22 @@
-import React from 'react'
+import { createContext, useContext, useState } from "react";
 
-function ThemeContext() {
+const ThemeContext = createContext();
+
+export function ThemeProvider({ children }) {
+  const [theme, setTheme] = useState("");
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "" : "dark"));
+  };
+
   return (
-    <div>ThemeContext</div>
-  )
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {/* This wrapper ensures Tailwind sees the dark mode class */}
+      <div className={theme === "dark" ? "dark" : ""}>
+        {children}
+      </div>
+    </ThemeContext.Provider>
+  );
 }
 
-export default ThemeContext
+export const useTheme = () => useContext(ThemeContext);

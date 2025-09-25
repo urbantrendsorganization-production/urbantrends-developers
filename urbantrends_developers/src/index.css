@@ -6,3 +6,5 @@
 body {
   font-family: 'Merriweather', serif;
 }
+
+@custom-variant dark (&:where(.dark, .dark *));
