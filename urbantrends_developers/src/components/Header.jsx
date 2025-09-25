@@ -5,12 +5,13 @@ import accountImage from '../assets/account.jpeg'
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   return (
-    <header className="bg-gradient-to-r from-white via-[#F8F9FA] to-white border-b border-gray-200/50 shadow-sm sticky top-0 z-50">
+    <header className="bg-gradient-to-r from-white via-[#F8F9FA] to-white border-b border-gray-200/50 dark:bg-black dark:text-white shadow-sm sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -44,12 +45,12 @@ function Header() {
                   </span>
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
                 </li>
-                <li className="relative group">
+                <button  className="relative group">
                   <span className="cursor-pointer hover:text-gray-900 transition-colors duration-200 py-2">
                     Theme
                   </span>
                   <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
-                </li>
+                </button>
               </ul>
             </div>
           </nav>

@@ -20,7 +20,7 @@ function Home() {
         <div className="absolute top-40 left-1/2 w-60 h-60 bg-pink-100 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-4000"></div>
       </div>
 
-      <Header />
+        <Header />
 
       {/* Hero Section */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16">
@@ -34,7 +34,7 @@ function Home() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.1] tracking-tight">
                 <span className="block text-black">SHOWCASE YOUR</span>
                 <span className="block text-black">BEST PROJECTS,</span>
-                <span className="block bg-gradient-to-r from-gray-700 via-gray-700 to-gray-900 bg-clip-text text-transparent animate-gradient">
+                <span className="block bg-gradient-to-r from-gray-700 via-gray-700 to-gray-900 dark:text-white bg-clip-text text-transparent animate-gradient">
                   GET NOTICED FIRST
                 </span>
               </h1>
