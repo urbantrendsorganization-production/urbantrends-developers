@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import logo from "../assets/logo2.svg";
+import logo from "../assets/urbantrends.svg";
 import accountImage from '../assets/account.jpeg'
 import { useTheme } from "../context/ThemeContext";
+import { useNavigate } from "react-router-dom";
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const navigate = useNavigate();
 
 
   const toggleMobileMenu = () => {
@@ -28,37 +30,37 @@ function Header() {
             <img 
               src={logo} 
               alt="UrbanTrends" 
-              className="h-12 w-auto sm:h-16 lg:h-30 drop-shadow-sm" 
+              className=" w-12 sm:h-16 lg:h-30 drop-shadow-sm" 
             />
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:block">
-            <div className="bg-white/80 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+            <div className="bg-white/80 dark:bg-gray-900 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               <ul className="flex items-center gap-8 text-gray-700 font-medium">
                 <li className="relative group">
-                  <span className="cursor-pointer hover:text-gray-900 transition-colors duration-200 py-2">
-                    Contact
+                  <span onClick={() => navigate('/')} className="cursor-pointer hover:text-gray-900 dark:text-white dark:hover:text-gray-300  transition-colors duration-200 py-2">
+                    Home
                   </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white group-hover:w-full transition-all duration-300"></div>
                 </li>
                 <li className="relative group">
-                  <span className="cursor-pointer hover:text-gray-900 transition-colors duration-200 py-2">
+                  <span className="cursor-pointer hover:text-gray-900 dark:text-white dark:hover:text-gray-300 transition-colors duration-200 py-2">
                     Community
                   </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white group-hover:w-full transition-all duration-300"></div>
                 </li>
                 <li className="relative group">
-                  <span className="cursor-pointer hover:text-gray-900 transition-colors duration-200 py-2">
+                  <span className="cursor-pointer hover:text-gray-900 dark:text-white dark:hover:text-gray-300 transition-colors duration-200 py-2">
                     Developers
                   </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white group-hover:w-full transition-all duration-300"></div>
                 </li>
-                <button onClick={toggleTheme}  className="relative group">
-                  <span className="cursor-pointer hover:text-gray-900 transition-colors duration-200 py-2">
+                <button onClick={toggleTheme} className="relative group">
+                  <span className="cursor-pointer hover:text-gray-900 dark:text-white dark:hover:text-gray-300 transition-colors duration-200 py-2">
                     {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                   </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 group-hover:w-full transition-all duration-300"></div>
+                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white group-hover:w-full transition-all duration-300"></div>
                 </button>
               </ul>
             </div>
@@ -101,13 +103,12 @@ function Header() {
           isMobileMenuOpen ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <nav className="py-4 px-2">
-            <div className="bg-white/80 backdrop-blur-md rounded-2xl shadow-lg border border-gray-200/50 p-4">
+            <div className="bg-white/80 dark:bg-gray-900 backdrop-blur-md rounded-2xl shadow-lg border border-gray-200/50 p-4">
               <ul className="space-y-3">
                 <li>
                   <a 
                     href="#" 
-                    className="block px-4 py-3 text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-3 dark:text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
                   >
                     Contact
                   </a>
@@ -115,8 +116,7 @@ function Header() {
                 <li>
                   <a 
                     href="#" 
-                    className="block px-4 py-3 text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-3 dark:text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
                   >
                     Community
                   </a>
@@ -124,8 +124,7 @@ function Header() {
                 <li>
                   <a 
                     href="#" 
-                    className="block px-4 py-3 text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-3 dark:text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
                   >
                     Developers
                   </a>
@@ -133,10 +132,10 @@ function Header() {
                 <li>
                   <a 
                     href="#" 
-                    className="block px-4 py-3 text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
-                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block px-4 py-3 dark:text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
+                    onClick={toggleTheme}
                   >
-                    Theme
+                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                   </a>
                 </li>
               </ul>
@@ -148,7 +147,7 @@ function Header() {
                     className="w-10 h-10 rounded-full bg-cover bg-center border-2 border-white shadow-md ring-2 ring-gray-200/50"
                     style={{ backgroundImage: `url(${accountImage})` }}
                   ></div>
-                  <span className="text-gray-700 font-medium">Account</span>
+                  <span className="dark:text-gray-700 font-medium">Account</span>
                 </div>
               </div>
             </div>
