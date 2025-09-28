@@ -8,9 +8,9 @@ function AddProjects() {
         project_type: '',
         project_name: '',
         tech_stack: '',
-        description: '',
+        project_description: '',
         repo_link: '',
-        live_demo: ''
+        live_link: ''
     });
     
     const [isAnimated, setIsAnimated] = useState(false);
@@ -41,11 +41,12 @@ function AddProjects() {
                     project_type: '',
                     project_name: '',
                     tech_stack: '',
-                    description: '',
+                    project_description: '',
                     repo_link: '',
-                    live_demo: ''
+                    live_link: ''
                 });
             }
+            console.log('Response:', response.data);
  
         } catch (error) {
             console.error('Error submitting project:', error.message);
@@ -145,7 +146,7 @@ function AddProjects() {
                                         onChange={handleInputChange}
                                         onFocus={() => setActiveField('project_name')}
                                         onBlur={() => setActiveField(null)}
-                                        className={`w-full px-4 py-3 dark:bg-white/10 border-2 rounded-xl text-white placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none ${
+                                        className={`w-full px-4 py-3 dark:bg-white/10 border-2 rounded-xl text-black placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none ${
                                             activeField === 'project_name' ? 'border-cyan-400 dark:bg-white/20 scale-105' : 'border-gray-500 hover:border-gray-700 dark:border-white/30 dark:hover:border-white/50'
                                         }`}
                                         placeholder="Enter your project name"
@@ -165,7 +166,7 @@ function AddProjects() {
                                         onChange={handleInputChange}
                                         onFocus={() => setActiveField('tech_stack')}
                                         onBlur={() => setActiveField(null)}
-                                        className={`w-full px-4 py-3 bg-white/10 border-2 rounded-xl text-white placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none ${
+                                        className={`w-full px-4 py-3 bg-white/10 border-2 rounded-xl text-black placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none ${
                                             activeField === 'tech_stack' ? 'border-cyan-400 bg-white/20 scale-105' : 'border-gray-500 hover:border-gray-600 dark:border-white/30 dark:hover:border-white/50'
                                         }`}
                                         placeholder="React, Node.js, MongoDB..."
@@ -180,15 +181,15 @@ function AddProjects() {
                                     <span>Project Description</span>
                                 </label>
                                 <textarea
-                                    id="description"
-                                    name='description'
-                                    value={formData.description}
+                                    id="project_description"
+                                    name='project_description'
+                                    value={formData.project_description}
                                     onChange={handleInputChange}
-                                    onFocus={() => setActiveField('description')}
+                                    onFocus={() => setActiveField('project_description')}
                                     onBlur={() => setActiveField(null)}
                                     rows="4"
-                                    className={`w-full px-4 py-3 bg-white/10 border-2 rounded-xl text-white placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none resize-none ${
-                                        activeField === 'description' ? 'border-cyan-400 bg-white/20 scale-105' : 'border-gray-500 hover:border-gray-600 dark:border-white/30 dark:hover:border-white/50'
+                                    className={`w-full px-4 py-3 bg-white/10 border-2 rounded-xl text-black placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none resize-none ${
+                                        activeField === 'project_description' ? 'border-cyan-400 bg-white/20 scale-105' : 'border-gray-500 hover:border-gray-600 dark:border-white/30 dark:hover:border-white/50'
                                     }`}
                                     placeholder="Tell us about your amazing project..."
                                 />
@@ -208,7 +209,7 @@ function AddProjects() {
                                         onChange={handleInputChange}
                                         onFocus={() => setActiveField('repo_link')}
                                         onBlur={() => setActiveField(null)}
-                                        className={`w-full px-4 py-3 bg-white/10 border-2 rounded-xl text-white placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none ${
+                                        className={`w-full px-4 py-3 bg-white/10 border-2 rounded-xl text-black placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none ${
                                             activeField === 'repo_link' ? 'border-cyan-400 bg-white/20 scale-105' : 'border-gray-500 hover:border-gray-700 dark:border-white/30 dark:hover:border-white/50'
                                         }`}
                                         placeholder="https://github.com/username/repo"
@@ -223,13 +224,13 @@ function AddProjects() {
                                     </label>
                                     <input
                                         type="url"
-                                        name='live_demo'
-                                        value={formData.live_demo}
+                                        name='live_link'
+                                        value={formData.live_link}
                                         onChange={handleInputChange}
-                                        onFocus={() => setActiveField('live_demo')}
+                                        onFocus={() => setActiveField('live_link')}
                                         onBlur={() => setActiveField(null)}
-                                        className={`w-full px-4 py-3 bg-white/10 border-2 rounded-xl text-white placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none ${
-                                            activeField === 'live_demo' ? 'border-cyan-400 bg-white/20 scale-105' : 'border-gray-500 hover:border-gray-700 dark:border-white/30 dark:hover:border-white/50'
+                                        className={`w-full px-4 py-3 bg-white/10 border-2 rounded-xl text-black placeholder-gray-400 backdrop-blur-sm transition-all duration-300 focus:outline-none ${
+                                            activeField === 'live_link' ? 'border-cyan-400 bg-white/20 scale-105' : 'border-gray-500 hover:border-gray-700 dark:border-white/30 dark:hover:border-white/50'
                                         }`}
                                         placeholder="https://your-project.vercel.app"
                                     />
