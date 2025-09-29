@@ -16,12 +16,14 @@ function App() {
         reverseOrder={false}
         toastOptions={{
           success: {
+            duration: 5000,
             style: {
               background: '#4ade80', // green-400
               color: '#fff',
             },
           },
           error: {
+            duration: 5000,
             style: {
               background: '#f87171', // red-400
               color: '#fff',

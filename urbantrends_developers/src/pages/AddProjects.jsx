@@ -60,7 +60,7 @@ function AddProjects() {
         try {
             setIsSubmitting(true);
             const response = await axios.post(`${URBANTRENDS_URL}api/add-projects`, formData);
-            toast.success('Project submitted successfully!', { id: toastId, duration: 4000 });
+            toast.success('Project submitted successfully!', { id: toastId });
             // Reset form
             setFormData({
                 project_type: '',
@@ -85,7 +85,6 @@ function AddProjects() {
             }
         } finally {
             setIsSubmitting(false);
-            toast.dismiss(toastId);
         }
     }
 
