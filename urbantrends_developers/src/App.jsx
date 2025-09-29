@@ -5,6 +5,7 @@ import AddProjects from './pages/AddProjects'
 import Projects from './pages/Projects'
 import Header from './components/Header'
 import { Toaster } from 'react-hot-toast'
+import Authentication from './pages/Authentication'
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='/' element={<Home />}/>
         <Route path='/add-project' element={<AddProjects />} />
         <Route path='/projects' element={<Projects />} />
+        <Route  path='/authentication' element={ <Authentication />}/>
       </Routes>
     </>
   )
