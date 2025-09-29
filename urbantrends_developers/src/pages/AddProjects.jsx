@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Code, Sparkles, Rocket, Github, Globe, Cpu, Zap, Star, Plus, ArrowRight } from 'lucide-react';
 import { Form } from 'react-router-dom';
 import axios from 'axios';
+import toast from 'react-hot-toast';
 
 function AddProjects() {
     const [formData, setFormData] = useState({
@@ -17,6 +18,7 @@ function AddProjects() {
     const [activeField, setActiveField] = useState(null);
     const [particles, setParticles] = useState([]);
     const URBANTRENDS_URL = import.meta.env.VITE_MAIN_LINK;
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     useEffect(() => {
         setIsAnimated(true);
@@ -31,25 +33,59 @@ function AddProjects() {
         setParticles(newParticles);
     }, []);
 
+    const validateForm = (formData) => {
+            if (!formData.project_type.trim()) return 'Please select a project type.';
+            if (!formData.project_name.trim()) return 'Project name is required.';
+            if (!formData.tech_stack.trim()) return 'Tech stack is required.';
+            if (!formData.project_description.trim()) return 'Project description is required.';
+            if (!formData.repo_link.trim()) return 'Repository link is required.';
+
+            if (formData.repo_link && !/^https?:\/\/.+/.test(formData.repo_link)) return 'Repository link must be a valid URL.';
+            if (formData.live_link && formData.live_link.trim() && !/^https?:\/\/.+/.test(formData.live_link)) return 'Live demo link must be a valid URL.';
+            return null; // No errors
+        }
+        
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const errorMsg = validateForm(formData);
+        if (errorMsg) {
+            toast.error(errorMsg);
+            return;
+        }
+        const toastId = toast.loading('Submitting your project...');
+
+        // Basic validation for required fields
         try {
+            setIsSubmitting(true);
             const response = await axios.post(`${URBANTRENDS_URL}api/add-projects`, formData);
-            if (response.status === 200) {
-                alert('Project submitted successfully!');
-                setFormData({
-                    project_type: '',
-                    project_name: '',
-                    tech_stack: '',
-                    project_description: '',
-                    repo_link: '',
-                    live_link: ''
-                });
-            }
+            toast.success('Project submitted successfully!', { id: toastId });
+            // Reset form
+            setFormData({
+                project_type: '',
+                project_name: '',
+                tech_stack: '',
+                project_description: '',
+                repo_link: '',
+                live_link: ''
+            });
             console.log('Response:', response.data);
+            
  
         } catch (error) {
             console.error('Error submitting project:', error.message);
+
+            if (error.response) {
+                toast.error(`Error: ${error.response.data.error || 'Server error occurred.'}`);
+            } else if (error.request) {
+                toast.error('No response from server. Please try again later.');
+            } else {
+                toast.error('An unexpected error occurred. Please try again.');
+            }
+        } finally {
+            setIsSubmitting(false);
+            toast.dismiss(toastId);
         }
     }
 
@@ -242,10 +278,11 @@ function AddProjects() {
                                 <button
                                     type="submit"
                                     className="group relative px-12 py-4 bg-gradient-to-r from-gray-500 to-gray-600 text-white font-bold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-4 focus:ring-cyan-400/50"
+                                    disabled={isSubmitting}
                                 >
                                     <span className="flex items-center space-x-2">
                                         <Rocket className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-                                        <span>Launch Project</span>
+                                        <span>{isSubmitting ? 'Submitting...' : 'Submit Project'}</span>
                                         <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                                     </span>
                                     <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-xl opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
