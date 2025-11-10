@@ -2,7 +2,9 @@ import React from 'react'
 
 function Projects() {
   return (
-    <div>Projects</div>
+    <div className='h-screen'>
+      <h2>This is the projects page</h2>
+    </div>
   )
 }
 
