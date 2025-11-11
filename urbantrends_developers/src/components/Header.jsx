@@ -1,82 +1,81 @@
 import React, { useState } from "react";
 import logo from "../assets/urbantrends.svg";
-import accountImage from '../assets/account.jpeg'
 import { useTheme } from "../context/ThemeContext";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
 
+  const { loginWithRedirect, logout, user, isAuthenticated, isLoading } = useAuth0();
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
-<header
-  className="
-    bg-gradient-to-r from-white via-[#F8F9FA] to-white 
-    dark:from-gray-900 dark:via-gray-800 dark:to-gray-900
-    border-b border-gray-200/50 dark:border-gray-700/50
-    shadow-sm sticky top-0 z-50
-  "
->
+    <header
+      className="
+        bg-gradient-to-r from-white via-[#F8F9FA] to-white 
+        dark:from-gray-900 dark:via-gray-800 dark:to-gray-900
+        border-b border-gray-200/50 dark:border-gray-700/50
+        shadow-sm sticky top-0 z-50
+      "
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
+
           {/* Logo */}
-          <div className="flex-shrink-0 transform hover:scale-105 transition-transform duration-200">
-            <img 
-              src={logo} 
-              alt="UrbanTrends" 
-              className=" w-12 sm:h-16 lg:h-30 drop-shadow-sm" 
-            />
+          <div className="flex-shrink-0 transform hover:scale-105 transition-transform duration-200 cursor-pointer"
+               onClick={() => navigate("/")}>
+            <img src={logo} alt="UrbanTrends" className="w-12 sm:h-16 lg:h-30 drop-shadow-sm" />
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:block">
             <div className="bg-white/80 dark:bg-gray-900 backdrop-blur-md px-6 py-3 rounded-full shadow-lg border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               <ul className="flex items-center gap-8 text-gray-700 font-medium">
-                <li className="relative group">
-                  <span onClick={() => navigate('/')} className="cursor-pointer hover:text-gray-900 dark:text-white dark:hover:text-gray-300  transition-colors duration-200 py-2">
-                    Home
-                  </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white group-hover:w-full transition-all duration-300"></div>
+                <li onClick={() => navigate('/')} className="cursor-pointer hover:text-gray-900 dark:text-white transition-colors duration-200">Home</li>
+                <li className="cursor-pointer hover:text-gray-900 dark:text-white transition-colors duration-200">Community</li>
+                <li className="cursor-pointer hover:text-gray-900 dark:text-white transition-colors duration-200">Developers</li>
+                <li onClick={toggleTheme} className="cursor-pointer hover:text-gray-900 dark:text-white transition-colors duration-200">
+                  {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                 </li>
-                <li className="relative group">
-                  <span className="cursor-pointer hover:text-gray-900 dark:text-white dark:hover:text-gray-300 transition-colors duration-200 py-2">
-                    Community
-                  </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white group-hover:w-full transition-all duration-300"></div>
-                </li>
-                <li className="relative group">
-                  <span className="cursor-pointer hover:text-gray-900 dark:text-white dark:hover:text-gray-300 transition-colors duration-200 py-2">
-                    Developers
-                  </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white group-hover:w-full transition-all duration-300"></div>
-                </li>
-                <button onClick={toggleTheme} className="relative group">
-                  <span className="cursor-pointer hover:text-gray-900 dark:text-white dark:hover:text-gray-300 transition-colors duration-200 py-2">
-                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-                  </span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-900 dark:bg-white group-hover:w-full transition-all duration-300"></div>
-                </button>
               </ul>
             </div>
           </nav>
 
-          {/* Desktop Account & Mobile Menu Button */}
+          {/* Account / Auth */}
           <div className="flex items-center gap-4">
-            {/* Account Circle - Desktop */}
-            <div className="hidden sm:block">
-              <div 
-                className="w-10 h-10 lg:w-12 lg:h-12 rounded-full cursor-pointer bg-cover bg-center border-2 border-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ring-2 ring-gray-200/50 hover:ring-blue-300/50"
-                style={{ backgroundImage: `url(${accountImage})` }}
-              ></div>
-            </div>
+            {!isLoading && (
+              isAuthenticated ? (
+                <>
+                  {/* Avatar */}
+                  <div
+                    className="w-10 h-10 lg:w-12 lg:h-12 rounded-full cursor-pointer bg-cover bg-center border-2 border-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 ring-2 ring-gray-200/50 hover:ring-blue-300/50"
+                    style={{ backgroundImage: `url(${user?.picture})` }}
+                    title={user?.name}
+                  ></div>
 
-            {/* Mobile Menu Button */}
+                  {/* Logout button */}
+                  <button
+                    onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+                    className="hidden sm:block bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 text-sm px-4 py-2 rounded-lg transition-all"
+                  >
+                    Logout
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={() => loginWithRedirect()}
+                  className="hidden sm:block bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg shadow-md transition-all"
+                >
+                  Login
+                </button>
+              )
+            )}
+
+            {/* Mobile menu toggle */}
             <button
               onClick={toggleMobileMenu}
               className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100/50 transition-colors duration-200"
@@ -96,62 +95,6 @@ function Header() {
               </svg>
             </button>
           </div>
-        </div>
-
-        {/* Mobile Navigation Menu */}
-        <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? 'max-h-100 opacity-100' : 'max-h-0 opacity-0'
-        }`}>
-          <nav className="py-4 px-2">
-            <div className="bg-white/80 dark:bg-gray-900 backdrop-blur-md rounded-2xl shadow-lg border border-gray-200/50 p-4">
-              <ul className="space-y-3">
-                <li>
-                  <a 
-                    href="#" 
-                    className="block px-4 py-3 dark:text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
-                  >
-                    Contact
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#" 
-                    className="block px-4 py-3 dark:text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
-                  >
-                    Community
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#" 
-                    className="block px-4 py-3 dark:text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
-                  >
-                    Developers
-                  </a>
-                </li>
-                <li>
-                  <a 
-                    href="#" 
-                    className="block px-4 py-3 dark:text-gray-700 font-medium hover:text-blue-600 hover:bg-blue-50/50 rounded-lg transition-all duration-200"
-                    onClick={toggleTheme}
-                  >
-                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-                  </a>
-                </li>
-              </ul>
-              
-              {/* Mobile Account Section */}
-              <div className="mt-5 pt-4 border-t border-gray-200/50">
-                <div className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50/50 rounded-lg transition-colors duration-200 cursor-pointer">
-                  <div 
-                    className="w-10 h-10 rounded-full bg-cover bg-center border-2 border-white shadow-md ring-2 ring-gray-200/50"
-                    style={{ backgroundImage: `url(${accountImage})` }}
-                  ></div>
-                  <span className="dark:text-gray-700 font-medium">Account</span>
-                </div>
-              </div>
-            </div>
-          </nav>
         </div>
       </div>
     </header>
